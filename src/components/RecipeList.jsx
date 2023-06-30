@@ -1,31 +1,44 @@
+import { Multiselect } from "multiselect-react-dropdown";
 import React, { useEffect, useState } from "react";
 import { Col, Form, Row } from "react-bootstrap";
+import doggo from "../media/suchempty.jpg";
 import SingleRecipe from "./SingleRecipe";
-
-// import Select, {
-//   components,
-//   MultiValueGenericProps,
-//   MultiValueProps,
-//   OnChangeValue,
-//   Props,
-// } from 'react-select';
-// import {
-//   SortableContainer,
-//   SortableContainerProps,
-//   SortableElement,
-//   SortEndHandler,
-//   SortableHandle,
-// } from 'react-sortable-hoc';
-
 const RecipeList = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedOption, setSelectedOption] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
+  const [selectedOptions, setSelectedOptions] = useState([]);
   const [records, setRecords] = useState([]);
   const [loading, setLoading] = useState(true);
-  //
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  //
+  const ingredientProperties = [
+    "strIngredient1",
+    "strIngredient2",
+    "strIngredient3",
+    "strIngredient4",
+    "strIngredient5",
+  ];
+
+  const useDocumentClick = (callback) => {
+    useEffect(() => {
+      const handleClick = (e) => {
+        if (
+          !e.target.classList.contains("multiselect-selected-text") &&
+          !e.target.classList.contains("multiselect-search")
+        ) {
+          callback();
+        }
+      };
+
+      document.addEventListener("click", handleClick);
+      return () => {
+        document.removeEventListener("click", handleClick);
+      };
+    }, [callback]);
+  };
+
+  useDocumentClick(() => {
+    setIsDropdownOpen(false);
+  });
+
   useEffect(() => {
     fetch("https://www.themealdb.com/api/json/v1/1/search.php?s")
       .then((response) => response.json())
@@ -43,114 +56,83 @@ const RecipeList = () => {
     return <div>Loading...</div>;
   }
 
-  const handleInputClick = (e) => {
-    const value = e.target.value;
-    setSearchQuery(value);
-    setSelectedOption(null);
-    setIsOpen(!isOpen);
-    setSearchQuery("");
-  };
-  const handleInputChange = (e) => {
-    const value = e.target.value;
-    setSearchQuery(value);
-    setIsOpen(true);
-  };
-  const handleOptionClick = (option) => {
-    setSelectedOption(option);
-    setSearchQuery(option);
-    setIsOpen(false);
+  const handleOptionClick = (selectedList) => {
+    setSelectedOptions(selectedList.map((option) => option.name));
   };
 
-  const ingredientProperties = [
-    "strIngredient1",
-    "strIngredient2",
-    "strIngredient3",
-    "strIngredient4",
-    "strIngredient5",
-  ];
+  const filteredRecipes =
+    selectedOptions.length > 0
+      ? records.filter((meal) => {
+          const ingredients = ingredientProperties
+            .map((prop) => meal[prop])
+            .filter((ingredient) => ingredient !== null && ingredient !== "");
+          return selectedOptions.every((option) =>
+            ingredients.some(
+              (ingredient) =>
+                ingredient &&
+                typeof ingredient === "string" &&
+                ingredient.toLowerCase().includes(option.toLowerCase())
+            )
+          );
+        })
+      : [];
 
-  let filteredOptions = ingredientProperties.reduce((acc, prop) => {
-    const ingredientOptions = records
-      .map((meal) => meal[prop])
-      .filter((option) =>
-        option.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-    return acc.concat(ingredientOptions);
-  }, []);
-
-  filteredOptions = [...new Set(filteredOptions)].sort((a, b) =>
-    a.localeCompare(b)
-  );
+  const ingredientOptions = Array.from(
+    new Set(
+      records.flatMap((meal) =>
+        ingredientProperties
+          .map((prop) => meal[prop])
+          .filter((ingredient) => ingredient !== null && ingredient !== "")
+      )
+    )
+  )
+    .filter((ingredient) => ingredient.trim() !== "")
+    .sort((a, b) => a.localeCompare(b))
+    .map((ingredient) => ({ name: ingredient }));
 
   return (
     <>
-      <Row className="d-flex justify-content-center">
+      <Row className="d-flex justify-content-center mb-5">
         <Col className="col-4">
           <Form.Group>
-            <Form.Label>Search a recipe</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Search here"
-              value={searchQuery}
-              onClick={handleInputClick}
-              onChange={handleInputChange}
+            <Form.Label>Select ingredients to begin:</Form.Label>
+            <Multiselect
+              options={ingredientOptions}
+              selectedValues={selectedOptions.map((name) => ({ name }))}
+              onSelect={handleOptionClick}
+              onRemove={handleOptionClick}
+              displayValue="name"
+              placeholder={selectedOptions.length > 0 ? "" : "Select ingredients"}
+              closeOnSelect={false}
+              isOpen={isDropdownOpen}
+              onToggle={() => setIsDropdownOpen(!isDropdownOpen)}
+              style={{
+                multiselectContainer: { backgroundColor: "#f2f2f2" },
+                searchBox: { background: "#f2f2f2", color: "#444" },
+                inputField: { background: "#f2f2f2", color: "#444" },
+                optionHover: { background: "#fff", color: "#444" }, // Adjust the hover color here
+                optionContainer: { background: "#444", color: "#fff" },
+                chips: { background: "#444" },
+              }}
             />
           </Form.Group>
         </Col>
       </Row>
-      <Row>
-        {isOpen && filteredOptions.length > 0 && (
-          <Col>
-            <ul className="text-decoration-none">
-              {filteredOptions.map((option) => (
-                <li
-                  key={option}
-                  style={{ cursor: "pointer" }}
-                  onClick={() => handleOptionClick(option)}
-                >
-                  {option}
-                </li>
-              ))}
-            </ul>
+      <Row className="d-flex justify-content-center mx-4">
+      {selectedOptions && filteredRecipes.length === 0 && (
+        <Row className="d-flex justify-content-center">
+          <Col className="col-4 mt-3">
+            <img src={doggo} alt="doggo" />
           </Col>
-        )}
-      </Row>
-      <Row>
-        {selectedOption && (
-          <Col>
-            <p>Selected Option: {selectedOption}</p>
+        </Row>
+      )}
+        {filteredRecipes.map((meal) => (
+          <Col xs={6} md={4} key={meal.idMeal}>
+            <SingleRecipe recipe={meal} />
           </Col>
-        )}
-      </Row>
-      <Row>
-        {records
-          .filter((meal) => {
-            const ingredients = [
-              meal.strIngredient1,
-              meal.strIngredient2,
-              meal.strIngredient3,
-              meal.strIngredient4,
-              meal.strIngredient5,
-            ];
-            return ingredients.some(
-              (ingredient) =>
-                ingredient &&
-                ingredient.toLowerCase() === selectedOption?.toLowerCase()
-            );
-          })
-          .map((meal) => (
-            <Col xs={12} md={4} key={meal.idMeal}>
-              <SingleRecipe recipe={meal} />
-            </Col>
-          ))}
+        ))}
       </Row>
     </>
-    // <div style={{width:"90%", justifyContent:"center", display:"flex"}}>
-    //   <div>
-    //     <h3 style={{color:"red"}}>Multiselect DropDown useState</h3>
-    //     <Multiselect options={options} displayValue={}></Multiselect>
-    //   </div>
-    // </div>
   );
 };
 
