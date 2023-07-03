@@ -1,8 +1,9 @@
 import { Multiselect } from "multiselect-react-dropdown";
 import React, { useEffect, useState } from "react";
 import { Col, Form, Row } from "react-bootstrap";
-import doggo from "../media/suchempty.jpg";
+import doggo from "../media/pics/suchempty.jpg";
 import SingleRecipe from "./SingleRecipe";
+
 const RecipeList = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [records, setRecords] = useState([]);
@@ -53,7 +54,7 @@ const RecipeList = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="text-light">Loading...</div>;
   }
 
   const handleOptionClick = (selectedList) => {
@@ -92,42 +93,47 @@ const RecipeList = () => {
 
   return (
     <>
-      <Row className="d-flex justify-content-center mb-5">
-        <Col className="col-4">
+      <Row className="d-flex justify-content-center align-items-center my-5">
+        <Col className="col-6 col-md-4">
           <Form.Group>
-            <Form.Label>Select ingredients to begin:</Form.Label>
+            <h1 className="text-light mb-5">
+              Select ingredients to begin:
+            </h1>
+
             <Multiselect
               options={ingredientOptions}
               selectedValues={selectedOptions.map((name) => ({ name }))}
               onSelect={handleOptionClick}
               onRemove={handleOptionClick}
               displayValue="name"
-              placeholder={selectedOptions.length > 0 ? "" : "Select ingredients"}
+              placeholder={
+                selectedOptions.length > 0 ? "" : "Select ingredients"
+              }
               closeOnSelect={false}
               isOpen={isDropdownOpen}
               onToggle={() => setIsDropdownOpen(!isDropdownOpen)}
               style={{
                 multiselectContainer: { backgroundColor: "#f2f2f2" },
-                searchBox: { background: "#f2f2f2", color: "#444" },
+                searchBox: { background: "transparent"},
                 inputField: { background: "#f2f2f2", color: "#444" },
-                optionHover: { background: "#fff", color: "#444" }, // Adjust the hover color here
-                optionContainer: { background: "#444", color: "#fff" },
+                optionHover: {
+                  background: selectedOptions.length > 0 ? "#fff" : "",
+                  color: selectedOptions.length > 0 ? "" : "",
+                },                optionContainer: { background: "#444", color: "#fff" },
                 chips: { background: "#444" },
               }}
             />
           </Form.Group>
         </Col>
       </Row>
-      <Row className="d-flex justify-content-center mx-4">
-      {selectedOptions && filteredRecipes.length === 0 && (
-        <Row className="d-flex justify-content-center">
-          <Col className="col-4 mt-3">
-            <img src={doggo} alt="doggo" />
+      <Row className="d-flex justify-content-center align-items-center">
+        {selectedOptions && filteredRecipes.length === 0 && (
+          <Col className="col-sm-6 mt-3 mx-5">
+            <img src={doggo} alt="doggo" style={{ width: "100%" }} />
           </Col>
-        </Row>
-      )}
+        )}
         {filteredRecipes.map((meal) => (
-          <Col xs={6} md={4} key={meal.idMeal}>
+          <Col className="mb-4 col-sm-3 mx-2" xs={6} md={4} key={meal.idMeal}>
             <SingleRecipe recipe={meal} />
           </Col>
         ))}
