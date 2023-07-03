@@ -133,7 +133,7 @@ const RecipeList = () => {
           </Col>
         )}
         {filteredRecipes.map((meal) => (
-          <Col className="mb-4 col-sm-3 mx-2" xs={6} md={4} key={meal.idMeal}>
+          <Col className="mb-4 col-sm-3 mx-1" xs={5} md={4} key={meal.idMeal}>
             <SingleRecipe recipe={meal} />
           </Col>
         ))}
