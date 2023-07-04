@@ -97,10 +97,16 @@ const RecipeList = () => {
         <Col className="col-6 col-md-4">
           <Form.Group>
 
+            
+            {selectedOptions && filteredRecipes.length === 0 ?
             <h1 className="text-light mb-5">
               Select ingredients to begin:
-            </h1>
-
+            </h1> 
+            :
+            <h1 className="text-light mb-5">
+            Click on a recipe to find out more!
+          </h1> 
+            }
             <Multiselect
               options={ingredientOptions}
               selectedValues={selectedOptions.map((name) => ({ name }))}
