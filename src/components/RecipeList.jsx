@@ -96,6 +96,7 @@ const RecipeList = () => {
       <Row className="d-flex justify-content-center align-items-center my-5">
         <Col className="col-6 col-md-4">
           <Form.Group>
+
             <h1 className="text-light mb-5">
               Select ingredients to begin:
             </h1>
@@ -133,7 +134,7 @@ const RecipeList = () => {
           </Col>
         )}
         {filteredRecipes.map((meal) => (
-          <Col className="mb-4 col-sm-3 mx-1" xs={5} md={4} key={meal.idMeal}>
+          <Col className="mb-4 col-sm-3 mx-1 d-flex justify-content-center flex-wrap" xs={5} md={3} key={meal.idMeal}>
             <SingleRecipe recipe={meal} />
           </Col>
         ))}

@@ -33,7 +33,19 @@ body {
     height: 600px;
   }
 }
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  body {
+    font-size: 1em;
+  }
+}
 
+/* Media query for even smaller screens */
+@media (max-width: 480px) {
+  body {
+    font-size: 12px;
+  }
+}
 /* fade in text */
 .wrapper-text {
   opacity: 0;
@@ -57,6 +69,84 @@ body {
     transform: scale(1.55);
   }
 }
+/* RegisterPage */
+.centered-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.formReg {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  padding: 50px 40px 40px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  color: white;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+}
+.formReg::before {
+  content:'';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: skewX(-17deg);
+  transform-origin: bottom left;
+  border-radius: 10px;
+  pointer-events: none;
+}
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.message {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.flex {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.submit {
+  width: 100%;
+  padding: 10px;
+  background-color: #E4D509;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.signin {
+  font-size: 14px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.signin a {
+  color: #E4D509;
+  text-decoration: none;
+}
+.signin span:hover {
+  text-decoration: underline;
+}
 
 /* LoginPage */
 #logo {
@@ -69,11 +159,12 @@ body {
   justify-content: center;
   align-items: center;
 }
+
 .form {
   position: relative;
   width: 100%;
   max-width: 380px;
-  padding: 80px 40px 40px;
+  padding: 50px 40px 40px;
   background: rgba(0, 0, 0, 0.7);
   border-radius: 10px;
   color: white;
@@ -147,6 +238,10 @@ body {
   border-radius: 5px;
   cursor: pointer;
 }
+
+.submit-btn:hover{
+  
+}
 .forgot-pw {
   color: inherit;
   display: flex;
@@ -172,6 +267,7 @@ body {
 
 #forgot-pw:target {
   height: 100%;
+  width: 100%;
   opacity: 1;
 }
 .close {
@@ -192,6 +288,4 @@ body {
   width: 100% !important;
 }
 /* search_input */
-input #search_input{
-  placeholder: "";
-}
+

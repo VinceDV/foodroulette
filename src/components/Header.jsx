@@ -4,7 +4,7 @@ import Navbar from "react-bootstrap/Navbar";
 import logo from "../media/pics/logo.jpg";
 const Header = () => {
   return (
-    <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
+    <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary sticky-top">
       <Container className="wrapper-text">
       <Nav.Link href="/home">
         <img className="me-5" src={logo} style={{ width: '3em', height: '3em' }} alt=""/>
@@ -16,8 +16,8 @@ const Header = () => {
             
           </Nav>
           <Nav>
+          <Nav.Link href="/login-page">Login</Nav.Link>
             <Nav.Link href="/register-page">Register</Nav.Link>
-            <Nav.Link href="/login-page">Login</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
