@@ -1,9 +1,8 @@
 import { Multiselect } from "multiselect-react-dropdown";
 import React, { useEffect, useState } from "react";
 import { Col, Form, Row } from "react-bootstrap";
-import doggo from "../media/pics/suchempty.jpg";
+import doggo2 from '../media/pics/suchempty-removebg-preview.png';
 import SingleRecipe from "./SingleRecipe";
-
 const RecipeList = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [records, setRecords] = useState([]);
@@ -100,7 +99,7 @@ const RecipeList = () => {
             
             {selectedOptions && filteredRecipes.length === 0 ?
             <h1 className="text-light mb-5">
-              Select ingredients to begin:
+              Select ingredients <br></br>to begin:
             </h1> 
             :
             <h1 className="text-light mb-5">
@@ -136,7 +135,7 @@ const RecipeList = () => {
       <Row className="d-flex justify-content-center align-items-center">
         {selectedOptions && filteredRecipes.length === 0 && (
           <Col className="col-sm-6 mt-3 mx-5">
-            <img src={doggo} alt="doggo" style={{ width: "100%" }} />
+            <img src={doggo2} alt="doggo" style={{ width: "100%" }} />
           </Col>
         )}
         {filteredRecipes.map((meal) => (

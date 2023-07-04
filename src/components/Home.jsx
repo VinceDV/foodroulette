@@ -1,8 +1,9 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
-
+import Footer from './Footer';
 const Home = () => {
   return (
+    <>
     <div
     id="jumbo"
       className="p-5 text-center bg-image d-flex justify-content-center align-items-center"
@@ -29,6 +30,8 @@ const Home = () => {
         </Row>
       </div>
     </div>
+    <Footer></Footer>
+    </>
   );
 };
 export default Home;
