@@ -6,6 +6,7 @@ function SingleRecipe(props) {
 
   return (
     <Card
+      className="carte"
       onClick={() => setSelected(!selected)}
       style={{
         maxWidth: "340px",

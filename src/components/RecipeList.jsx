@@ -1,8 +1,9 @@
 import { Multiselect } from "multiselect-react-dropdown";
 import React, { useEffect, useState } from "react";
 import { Col, Form, Row } from "react-bootstrap";
-import doggo2 from '../media/pics/suchempty-removebg-preview.png';
+import doge from "../media/pics/doge.png";
 import SingleRecipe from "./SingleRecipe";
+
 const RecipeList = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [records, setRecords] = useState([]);
@@ -95,17 +96,15 @@ const RecipeList = () => {
       <Row className="d-flex justify-content-center align-items-center my-5">
         <Col className="col-6 col-md-4">
           <Form.Group>
-
-            
-            {selectedOptions && filteredRecipes.length === 0 ?
-            <h1 className="text-light mb-5">
-              Select ingredients <br></br>to begin:
-            </h1> 
-            :
-            <h1 className="text-light mb-5">
-            Click on a recipe to find out more!
-          </h1> 
-            }
+            {selectedOptions && filteredRecipes.length === 0 ? (
+              <h1 className="text-light mb-5">
+                Select ingredients <br></br>to begin:
+              </h1>
+            ) : (
+              <h1 className="text-light mb-5">
+                Click on a recipe to find out more!
+              </h1>
+            )}
             <Multiselect
               options={ingredientOptions}
               selectedValues={selectedOptions.map((name) => ({ name }))}
@@ -120,12 +119,13 @@ const RecipeList = () => {
               onToggle={() => setIsDropdownOpen(!isDropdownOpen)}
               style={{
                 multiselectContainer: { backgroundColor: "#f2f2f2" },
-                searchBox: { background: "transparent"},
+                searchBox: { background: "transparent" },
                 inputField: { background: "#f2f2f2", color: "#444" },
                 optionHover: {
                   background: selectedOptions.length > 0 ? "#fff" : "",
                   color: selectedOptions.length > 0 ? "" : "",
-                },                optionContainer: { background: "#444", color: "#fff" },
+                },
+                optionContainer: { background: "#444", color: "#fff" },
                 chips: { background: "#444" },
               }}
             />
@@ -134,12 +134,18 @@ const RecipeList = () => {
       </Row>
       <Row className="d-flex justify-content-center align-items-center">
         {selectedOptions && filteredRecipes.length === 0 && (
-          <Col className="col-sm-6 mt-3 mx-5">
-            <img src={doggo2} alt="doggo" style={{ width: "100%" }} />
+          <Col className="col-sm-6">
+            <img className="mb-4" src={doge} alt="doggo" style={{ width: "30%" }} />
+            <h3 className="text-light">Wow, such empty</h3>
           </Col>
         )}
         {filteredRecipes.map((meal) => (
-          <Col className="mb-4 col-sm-3 mx-1 d-flex justify-content-center flex-wrap" xs={5} md={3} key={meal.idMeal}>
+          <Col
+            className="mb-4 col-sm-3 mx-1 d-flex justify-content-center flex-wrap"
+            xs={5}
+            md={3}
+            key={meal.idMeal}
+          >
             <SingleRecipe recipe={meal} />
           </Col>
         ))}

@@ -83,8 +83,14 @@ body {
   opacity: 0.5;
 } */
 
-
-
+/* carte */
+.carte {
+  transition: transform 0.5s;
+  box-shadow: 5px 5px 15px 2px #2e2d2d
+}
+.carte:hover {
+  transform: translateY(-10px);
+}
 .formReg {
   position: relative;
   width: 100%;
