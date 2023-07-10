@@ -11,9 +11,9 @@ const Home = () => {
         style={{ backgroundImage: "", height: 400 }}
       >
         <div className="mask p-5">
-          <Row className="d-flex justify-content-center align-items-center h-100">
+          <Row className="d-flex justify-content-center h-100">
             <Col
-              className="col-md-12 text-white d-flex flex-column justify-content-center align-items-center"
+              className="col-xs-12 text-white d-flex flex-column justify-content-center align-items-center glass"
               style={{
                 backgroundImage: "",
                 width: 400,
@@ -28,7 +28,7 @@ const Home = () => {
                 Is it a soup? Is it a sub?<br></br> Your fridge decides!
               </h4>
               <a
-                className="btn btn-outline-light btn-lg"
+                className="btn btn-outline-light btn-lg mt-5"
                 href="/recipe-list"
                 role="button"
               >

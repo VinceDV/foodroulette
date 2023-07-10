@@ -68,7 +68,7 @@ const LoginPage = () => {
           />
           <label htmlFor="loginPassword">Password</label>
         </div>
-        <input type="submit" value="Login" className="submit-btn" />
+        <input type="submit" value="Login" className="submit-btn bottone" />
         <a href="#forgot-pw" className="forgot-pw">
           Forgot Password?
         </a>
@@ -84,7 +84,7 @@ const LoginPage = () => {
             <input type="email" name="email" id="email" required />
             <label htmlFor="email">Email</label>
           </div>
-          <input type="submit" value="Submit" className="submit-btn" />
+          <input type="submit" value="Submit" className="submit-btn bottone" />
         </form>
       </div>
     </div>

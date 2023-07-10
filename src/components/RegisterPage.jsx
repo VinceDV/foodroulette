@@ -129,7 +129,7 @@ function RegisterPage() {
               onChange={handleChange}
             />
           </label>
-          <button className="submit my-4 text-dark">Conferma</button>
+          <button className="submit my-4 text-dark bottone">Conferma</button>
           <p className="signin">
             Hai già un account?{" "}
             <Link to="/login-page">
