@@ -32,7 +32,7 @@ function RegisterPage() {
       });
 
       if (response.ok) {
-        console.log("Registrazione avvenuta con successo");
+        console.log("Registrazione avvenuta con successo.");
         alert("Registrazione avvenuta con successo");
         navigate("/home");
       } else {

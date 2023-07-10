@@ -33,7 +33,7 @@ const LoginPage = () => {
         let data = await response.json();
         console.log("Login successful" + data.accessToken);
         window.localStorage.setItem("token", data.accessToken);
-        alert("Bentornato, " + formData.userName + '!');
+        alert("Bentornato/a, " + formData.userName + '!');
         navigate("/home");
       } else {
         console.log("Login failed");
