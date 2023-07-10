@@ -7,6 +7,7 @@ import LoginPage from './components/LoginPage';
 import RecipeList from './components/RecipeList.jsx';
 import RegisterPage from './components/RegisterPage';
 import SingleRecipe from './components/SingleRecipe';
+import SpecRec from './components/SpecRec';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route path="/recipe-list" element={<RecipeList />} />
           <Route path="/single-recipe" element={<SingleRecipe />} />
+          <Route path="/specrec/:id" element={<SpecRec />} />
           <Route path="/login-page" element={<LoginPage />} />
           <Route path="/register-page" element={<RegisterPage />} />
           <Route path="/home" element={<Home />} />

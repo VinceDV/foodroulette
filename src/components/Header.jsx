@@ -16,6 +16,7 @@ const Header = () => {
             
           </Nav>
           <Nav>
+            
           <Nav.Link href="/login-page">Login</Nav.Link>
             <Nav.Link href="/register-page">Register</Nav.Link>
           </Nav>

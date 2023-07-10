@@ -1,27 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Caprasimo&family=Montserrat:ital,wght@0,400;0,700;1,400;1,600&family=Poppins:wght@100;200;300;400;600;700&family=Roboto:wght@400;700&family=Spectral&display=swap');
+
 .App {
   text-align: center;
 }
+
 body {
-  background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)),url(../src/media/pics/foodbg.jpeg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.808)),
+    url(../src/media/pics/foodbg.jpeg);
   background-attachment: fixed !important;
   background-size: cover !important;
   background-repeat: no-repeat !important;
-  font-family: 'Caprasimo', cursive;
-}
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  font-family: "Caprasimo", cursive;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 /* Default height for small devices */
 #intro-example {
   height: 400px;
@@ -33,6 +24,7 @@ body {
     height: 600px;
   }
 }
+
 /* Media query for smaller screens */
 @media (max-width: 768px) {
   body {
@@ -46,23 +38,11 @@ body {
     font-size: 12px;
   }
 }
-/* fade in text */
-.wrapper-text {
-  opacity: 0;
-  animation: ani2 1s ease-out forwards;
-}
-
-.wrapper-text img {
-  animation: ani2 0.75s ease-out 3s forwards;
-}
-/* .wrapper-text img {
-  animation: ani2 0.75s ease-out 3s forwards;
-} */
 
 @keyframes ani2 {
   100% {
     opacity: 1;
-    }
+  }
 }
 @keyframes ani1 {
   100% {
@@ -82,14 +62,18 @@ body {
   padding: 0;
   opacity: 0.5;
 } */
+/* fireplace */
 
 /* carte */
 .carte {
-  transition: transform 0.5s;
-  box-shadow: 5px 5px 15px 2px #2e2d2d
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 5px 5px 15px 2px #2e2d2d;
 }
 .carte:hover {
-  transform: translateY(-10px);
+  outline: none;
+  border-color: #9ecaed;
+  box-shadow: 0 0 10px #9ecaed;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 .formReg {
   position: relative;
@@ -102,7 +86,7 @@ body {
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
 }
 .formReg::before {
-  content:'';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -141,7 +125,7 @@ body {
 .submit {
   width: 100%;
   padding: 10px;
-  background-color: #E4D509;
+  background-color: #e4d509;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -155,7 +139,7 @@ body {
 }
 
 .signin a {
-  color: #E4D509;
+  color: #e4d509;
   text-decoration: none;
 }
 .signin span:hover {
@@ -164,7 +148,7 @@ body {
 
 /* LoginPage */
 #logo {
-  background-color: #6D6C5C;
+  background-color: #6d6c5c;
 }
 .login-wrapper {
   height: 100vh;
@@ -185,7 +169,7 @@ body {
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
 }
 .form::before {
-  content:'';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -231,7 +215,7 @@ body {
   padding: 10px;
   font-size: 1rem;
   pointer-events: none;
-  transition: .2s ease-out;
+  transition: 0.2s ease-out;
 }
 .form .input-group input:focus + label, /*animazione in su*/
 .form .input-group input:valid + label {
@@ -244,7 +228,7 @@ body {
   margin-left: auto;
   border: none;
   outline: none;
-  background:  #e4d509;
+  background: #e4d509;
   font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -253,8 +237,7 @@ body {
   cursor: pointer;
 }
 
-.submit-btn:hover{
-  
+.submit-btn:hover {
 }
 .forgot-pw {
   color: inherit;
@@ -274,7 +257,7 @@ body {
   right: 0;
   height: 0;
   z-index: 1;
-  background:  url(./media/pics/foodbg.jpeg) no-repeat center;
+  background: url(./media/pics/foodbg.jpeg) no-repeat center;
   opacity: 0;
   transition: 0.6s;
 }
@@ -294,7 +277,7 @@ body {
   color: inherit;
 }
 /* .searchWrapper */
-.searchWrapper{
+.searchWrapper {
   width: 100% !important;
 }
 .searchBox {
@@ -302,4 +285,3 @@ body {
   width: 100% !important;
 }
 /* search_input */
-

@@ -16,6 +16,13 @@ const RecipeList = () => {
     "strIngredient3",
     "strIngredient4",
     "strIngredient5",
+    "strIngredient6",
+    "strIngredient7",
+    "strIngredient8",
+    "strIngredient9",
+    "strIngredient10",
+
+
   ];
 
   const useDocumentClick = (callback) => {
@@ -98,7 +105,7 @@ const RecipeList = () => {
           <Form.Group>
             {selectedOptions && filteredRecipes.length === 0 ? (
               <h1 className="text-light mb-5">
-                Select ingredients <br></br>to begin:
+                Select ingredients <br></br>you have:
               </h1>
             ) : (
               <h1 className="text-light mb-5">

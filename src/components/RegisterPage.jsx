@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function RegisterPage() {
   const [validated, setValidated] = useState(false);
@@ -10,6 +10,7 @@ function RegisterPage() {
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -32,7 +33,8 @@ function RegisterPage() {
 
       if (response.ok) {
         console.log("Registrazione avvenuta con successo");
-        alert("Registrazione avviata con successo");
+        alert("Registrazione avvenuta con successo");
+        navigate("/home");
       } else {
         console.log("Errore durante la registrazione " + formData);
         alert("Errore durante la registrazione");
@@ -59,7 +61,7 @@ function RegisterPage() {
           className="formReg"
           onSubmit={handleSubmit}
           noValidate
-          validated={validated}
+          validated={validated.toString()} // Convert boolean to string
         >
           <p className="title text-center fs-3">Registrati</p>
           <p className="message">
