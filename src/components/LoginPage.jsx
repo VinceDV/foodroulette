@@ -33,8 +33,7 @@ const LoginPage = () => {
         let data = await response.json();
         console.log("Login successful " + data.accessToken);
         window.localStorage.setItem("token", data.accessToken);
-        window.localStorage.setItem("username", data.username); // Set the username in localStorage
-        //alert("Bentornato/a, " + formData.userName + '!');
+        window.localStorage.setItem("username", data.username);
         navigate("/home");
         console.log("Login successful " + data.userName);
         window.location.reload();

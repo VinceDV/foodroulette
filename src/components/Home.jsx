@@ -24,16 +24,33 @@ const Home = () => {
               <h1 className="d-flex justify-content-center align-items-center mb-3">
                 FoodRoulette
               </h1>
-              <h4 className="mb-3">
+              <h4>
                 Is it a soup? Is it a sub?<br></br> Your fridge decides!
               </h4>
-              <a
-                className="btn btn-outline-light btn-lg mt-5"
-                href="/recipe-list"
-                role="button"
-              >
-                Let's get cooking!
-              </a>
+              {!localStorage.getItem("token") ? (
+                <>
+                  <h5 className="mt-5">Register or Login to get started!</h5>
+                  <div className="d-flex mt-3">
+                    <a href="/register-page"><button className="linkNav me-5" >
+                      Register
+                    </button>
+                    </a>
+                    <a href="/login-page"><button className="linkNav" >
+                      Login
+                    </button>
+                    </a>
+                  </div>
+                </>
+              ) : (
+                <a
+                  className="btn btn-outline-light btn-lg mt-5"
+                  href="/recipe-list"
+                  role="button"
+                >
+                  Let's get cooking!
+                </a>
+              )}
+
               <div className="d-flex justify-content-center">
                 <div className="fireplace">
                   <div className="blur">

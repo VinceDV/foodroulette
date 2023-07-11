@@ -5,7 +5,7 @@
 }
 
 body {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(24, 24, 24, 0.623)),
+  background-image: linear-gradient(rgba(197, 193, 193, 0.2), rgba(24, 24, 24, 0.623)),
     url(../src/media/pics/foodbg.jpeg);
   background-attachment: fixed !important;
   background-size: cover !important;
@@ -128,7 +128,7 @@ body {
   width: 100%;
   max-width: 380px;
   padding: 50px 40px 40px;
-  background: rgba(0, 0, 0, 0.7);
+  background: #493c31;
   border-radius: 10px;
   color: white;
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
@@ -211,7 +211,7 @@ body {
   width: 100%;
   max-width: 380px;
   padding: 50px 40px 40px;
-  background: rgba(0, 0, 0, 0.7);
+  background: #493c31;
   border-radius: 10px;
   color: white;
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
