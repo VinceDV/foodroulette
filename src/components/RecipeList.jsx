@@ -149,7 +149,7 @@ const RecipeList = () => {
         {filteredRecipes.map((meal) => (
           <Col
             className="mb-4 col-sm-3 mx-1 d-flex justify-content-center flex-wrap"
-            xs={5}
+            xs={6}
             md={3}
             key={meal.idMeal}
           >

@@ -33,15 +33,15 @@ function RegisterPage() {
 
       if (response.ok) {
         console.log("Registrazione avvenuta con successo.");
-        alert("Registrazione avvenuta con successo");
+        alert("Registration successful!");
         navigate("/home");
       } else {
-        console.log("Errore durante la registrazione " + formData);
-        alert("Errore durante la registrazione");
+        console.log("Error during registration " + formData);
+        alert("Error during registration");
       }
     } catch (error) {
       console.log(
-        "Si è verificato un errore durante la richiesta di registrazione"
+        "Error occurred during registration request"
       );
       alert(error);
     }
@@ -63,13 +63,13 @@ function RegisterPage() {
           noValidate
           validated={validated.toString()} // Convert boolean to string
         >
-          <p className="title text-center fs-3">Registrati</p>
+          <p className="title text-center fs-3">Register</p>
           <p className="message">
-            Registrati e accedi a tutti gli utilizzi dell'app:
+            Register to get full access to the app:
           </p>
           <div className="flex">
             <label>
-              <span>Nome</span>
+              <span>Name</span>
               <input
                 required
                 placeholder=""
@@ -81,7 +81,7 @@ function RegisterPage() {
               />
             </label>
             <label>
-              <span>Cognome</span>
+              <span>Last Name</span>
               <input
                 required
                 placeholder=""
@@ -94,7 +94,7 @@ function RegisterPage() {
             </label>
           </div>
           <label>
-            <span>UserName</span>
+            <span>Username</span>
             <input
               required
               placeholder=""
@@ -129,11 +129,11 @@ function RegisterPage() {
               onChange={handleChange}
             />
           </label>
-          <button className="submit my-4 text-dark bottone">Conferma</button>
+          <button className="submit my-4 text-dark bottone">Submit</button>
           <p className="signin">
-            Hai già un account?{" "}
+            Got an account?{" "}
             <Link to="/login-page">
-              <span>Accedi</span>
+              <span>LogIn</span>
             </Link>
           </p>
         </form>

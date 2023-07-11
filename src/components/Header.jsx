@@ -13,13 +13,30 @@ const Header = () => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link className="linkNav" href="/home">Home</Nav.Link>
-            
           </Nav>
           <Nav>
-            
-          <Nav.Link className="linkNav me-3" href="/login-page">Login</Nav.Link>
-            <Nav.Link className="linkNav" href="/register-page">Register</Nav.Link>
-          </Nav>
+  {localStorage.getItem("token") ? (
+    <>
+<Nav.Link style={{ textDecoration: "none", cursor: "auto" }}>
+  Welcome, {localStorage.getItem("username")}
+</Nav.Link>
+    <button className="linkNav" onClick={() => {
+  localStorage.clear(); 
+  window.location.reload(); 
+}} href="/home">Logout</button>
+    </>
+  ) : (
+    <>
+      <Nav.Link className="linkNav me-3" href="/login-page">
+        Login
+      </Nav.Link>
+      <Nav.Link className="linkNav" href="/register-page">
+        Register
+      </Nav.Link>
+    </>
+  )}
+</Nav>
+
         </Navbar.Collapse>
       </Container>
     </Navbar>

@@ -28,22 +28,25 @@ const LoginPage = () => {
         },
         body: JSON.stringify(formData),
       });
-
+    
       if (response.ok) {
         let data = await response.json();
-        console.log("Login successful" + data.accessToken);
+        console.log("Login successful " + data.accessToken);
         window.localStorage.setItem("token", data.accessToken);
-        alert("Bentornato/a, " + formData.userName + '!');
+        window.localStorage.setItem("username", data.username); // Set the username in localStorage
+        //alert("Bentornato/a, " + formData.userName + '!');
         navigate("/home");
+        console.log("Login successful " + data.userName);
+        window.location.reload();
       } else {
         console.log("Login failed");
-        alert("Username or password wrong!");
+        alert("Wrong username or password!");
       }
     } catch (error) {
       console.log("An error occurred while logging in");
       alert(error);
     }
-  };
+  }
 
   return (
     <div className="login-wrapper">
@@ -54,7 +57,7 @@ const LoginPage = () => {
           <input type="text" name="userName" id="loginUser" required
                 value={formData.userName}
                 onChange={handleChange}/>
-          <label htmlFor="loginUser">User Name</label>
+          <label htmlFor="loginUser">Username</label>
         </div>
         <div className="input-group">
           <input
