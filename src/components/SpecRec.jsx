@@ -18,10 +18,10 @@ function SpecRec(props) {
       "https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + params.id,
       requestOptions
     )
-      .then((response) => {response.text()
+      .then((response) => {response.json()
       console.log(response)})
       .then((data) => {
-        setRecords(data.body);
+        setRecords(data.meals);
         console.log(data);
         setLoading(false);
       })
