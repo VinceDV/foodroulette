@@ -34,7 +34,7 @@ function RegisterPage() {
       if (response.ok) {
         console.log("Registrazione avvenuta con successo.");
         alert("Registration successful!");
-        navigate("/home");
+        navigate("/login-page");
       } else {
         console.log("Error during registration " + formData);
         alert("Error during registration");

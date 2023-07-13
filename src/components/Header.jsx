@@ -22,9 +22,15 @@ const Header = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link className="linkNav" href="/home">
+            <Nav.Link className="linkNav me-3" href="/home">
               Home
             </Nav.Link>
+            {localStorage.getItem("token") && (
+              <Nav.Link className="linkNav" href="/create-recipe">
+              Create
+            </Nav.Link>
+            )}
+            
           </Nav>
           <Nav>
             {localStorage.getItem("token") ? (

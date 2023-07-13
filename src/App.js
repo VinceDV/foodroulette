@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import './App.css';
+import CreateRecipe from './components/CreateRecipe';
 import Header from './components/Header';
 import Home from './components/Home.jsx';
 import LoginPage from './components/LoginPage';
@@ -21,6 +22,8 @@ function App() {
           <Route path="/login-page" element={<LoginPage />} />
           <Route path="/register-page" element={<RegisterPage />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/create-recipe" element={<CreateRecipe />} />
+
         </Routes>
       </BrowserRouter>
     </div>

@@ -20,9 +20,6 @@ const RecipeList = () => {
     "strIngredient7",
     "strIngredient8",
     "strIngredient9",
-    "strIngredient10",
-
-
   ];
 
   const useDocumentClick = (callback) => {
@@ -47,11 +44,22 @@ const RecipeList = () => {
     setIsDropdownOpen(false);
   });
 
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  myHeaders.append("Authorization",
+  "Bearer " + localStorage.getItem("token"));
+
+  var requestOptions = {
+    method: 'GET',
+    headers: myHeaders,
+    redirect: 'follow'
+  };
   useEffect(() => {
-    fetch("https://www.themealdb.com/api/json/v1/1/search.php?s")
+    fetch("http://localhost:8080/app/ricetta",
+      requestOptions)
       .then((response) => response.json())
       .then((data) => {
-        setRecords(data.meals);
+        setRecords(data);
         setLoading(false);
       })
       .catch((err) => {
@@ -94,7 +102,7 @@ const RecipeList = () => {
       )
     )
   )
-    .filter((ingredient) => ingredient.trim() !== "")
+    .filter((ingredient) => ingredient !== "")
     .sort((a, b) => a.localeCompare(b))
     .map((ingredient) => ({ name: ingredient }));
 
@@ -148,9 +156,9 @@ const RecipeList = () => {
         )}
         {filteredRecipes.map((meal) => (
           <Col
-            className="mb-4 col-sm-3 mx-1 d-flex justify-content-center flex-wrap"
+            className="mb-4 col-xs-3 mx-1 d-flex justify-content-center flex-wrap"
             xs={6}
-            md={3}
+            lg={3}
             key={meal.idMeal}
           >
             <SingleRecipe recipe={meal} />
