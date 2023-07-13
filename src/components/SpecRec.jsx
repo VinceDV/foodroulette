@@ -89,8 +89,8 @@ function SpecRec(props) {
                     <h4 className="text-center mb-3">Instructions</h4>
                     <p className="text-start" style={{color: "rgb(43, 42, 41)"}}>{records.strInstructions}</p>
                   </Col>
-                  <Col xs={12} className="d-flex justify-content-center align-items-center">
-                    <Link className="btn btn-dark btn-lg me-5" target="_blank" to={records.strYoutube}>Watch Recipe</Link>
+                  <Col xs={12} className="d-flex justify-content-center align-items-center flex-column">
+                    <Link className="btn btn-warning mb-5 py-3" target="_blank" to={records.strYoutube}>Watch Recipe</Link>
                     <a
                   className="btn btn-outline-light btn-lg"
                   href="/recipe-list"
