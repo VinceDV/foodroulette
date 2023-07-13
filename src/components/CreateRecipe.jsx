@@ -44,6 +44,7 @@ function CreateRecipe() {
       const response = await fetch("http://localhost:8080/api/ricetta", {
         method: "POST",
         headers: myHeaders,
+        mode: 'no-cors',
         body: JSON.stringify(formData),
       });
 

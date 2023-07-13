@@ -13,7 +13,7 @@ const Home = () => {
         <div className="mask p-5">
           <Row className="d-flex justify-content-center h-100">
             <Col
-              className="col-xs-12 text-white d-flex flex-column justify-content-center align-items-center glass"
+              className="col-xs-12 text-white d-flex flex-column justify-content-center align-items-center glass mb-1"
               style={{
                 backgroundImage: "",
                 width: 400,
