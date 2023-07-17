@@ -12,7 +12,7 @@ function SpecRec(props) {
 
   var myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
-  myHeaders.append("Authorization", "Bearer " + localStorage.getItem("token"));
+  // myHeaders.append("Authorization", "Bearer " + localStorage.getItem("token"));
 
   var requestOptions = {
     method: "GET",

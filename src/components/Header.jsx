@@ -25,11 +25,9 @@ const Header = () => {
             <Nav.Link className="linkNav me-3" href="/home">
               Home
             </Nav.Link>
-            {localStorage.getItem("token") && (
               <Nav.Link className="linkNav" href="/create-recipe">
               Create
             </Nav.Link>
-            )}
             
           </Nav>
           <Nav>

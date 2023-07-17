@@ -27,21 +27,8 @@ const Home = () => {
               <h4>
                 Is it a soup? Is it a sub?<br></br> Your fridge decides!
               </h4>
-              {!localStorage.getItem("token") ? (
-                <>
-                  <h5 className="mt-5">Register or Login to get started!</h5>
-                  <div className="d-flex mt-3">
-                    <a href="/register-page"><button className="linkNav me-5" >
-                      Register
-                    </button>
-                    </a>
-                    <a href="/login-page"><button className="linkNav" >
-                      Login
-                    </button>
-                    </a>
-                  </div>
-                </>
-              ) : (
+              <p className="mt-3">The only ingredients we assume you have are salt, pepper, and water.</p>
+              
                 <a
                   className="btn btn-outline-light btn-lg mt-5"
                   href="/recipe-list"
@@ -49,7 +36,7 @@ const Home = () => {
                 >
                   Let's get cooking!
                 </a>
-              )}
+              
 
               <div className="d-flex justify-content-center">
                 <div className="fireplace">

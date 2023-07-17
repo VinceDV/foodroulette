@@ -3,9 +3,12 @@ import { Link } from "react-router-dom";
 
 function SingleRecipe(props) {
   return (
+    
     <Card
       className="carte">
-      <Link to={"/specrec/" + props.recipe.idMeal}><Card.Img variant="top" src={props.recipe.strMealThumb} /></Link>
+      <Link to={"/specrec/" + props.recipe.idMeal}>
+        <Card.Img variant="top" src={props.recipe.strMealThumb} style={{ width: "335.69px", height: "223.78px" }}/>
+      </Link>
       <Card.Body className="pt-2 pb-0">
         <Card.Title>
           <p className="p-0" style={{fontSize: ".9em"}}>
@@ -14,7 +17,6 @@ function SingleRecipe(props) {
         </Card.Title>
       </Card.Body>
     </Card>
-
   );
 }
 

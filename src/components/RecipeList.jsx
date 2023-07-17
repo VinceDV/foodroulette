@@ -46,17 +46,15 @@ const RecipeList = () => {
 
   var myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
-  myHeaders.append("Authorization",
-  "Bearer " + localStorage.getItem("token"));
+  // myHeaders.append("Authorization", "Bearer " + localStorage.getItem("token"));
 
   var requestOptions = {
-    method: 'GET',
+    method: "GET",
     headers: myHeaders,
-    redirect: 'follow'
+    redirect: "follow",
   };
   useEffect(() => {
-    fetch("http://localhost:8080/app/ricetta",
-      requestOptions)
+    fetch("http://localhost:8080/app/ricetta", requestOptions)
       .then((response) => response.json())
       .then((data) => {
         setRecords(data);
@@ -150,13 +148,18 @@ const RecipeList = () => {
       <Row className="d-flex justify-content-center align-items-center">
         {selectedOptions && filteredRecipes.length === 0 && (
           <Col className="col-sm-6">
-            <img className="mb-4" src={doge} alt="doggo" style={{ width: "30%" }} />
+            <img
+              className="mb-4"
+              src={doge}
+              alt="doggo"
+              style={{ width: "40%" }}
+            />
             <h3 className="text-light">Wow, such empty</h3>
           </Col>
         )}
         {filteredRecipes.map((meal) => (
           <Col
-            className="mb-4 col-xs-3 mx-1 d-flex justify-content-center flex-wrap"
+            className="mb-5 col-xs-3 mx-1 d-flex justify-content-center flex-wrap"
             xs={6}
             lg={3}
             key={meal.idMeal}
