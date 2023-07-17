@@ -5,9 +5,10 @@ function SingleRecipe(props) {
   return (
     
     <Card
+    
       className="carte">
       <Link to={"/specrec/" + props.recipe.idMeal}>
-        <Card.Img variant="top" src={props.recipe.strMealThumb} style={{ width: "335.69px", height: "223.78px" }}/>
+        <Card.Img variant="top" src={props.recipe.strMealThumb} />
       </Link>
       <Card.Body className="pt-2 pb-0">
         <Card.Title>

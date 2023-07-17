@@ -269,7 +269,7 @@ function CreateRecipe() {
                   value={formData.difficulty}
                   onChange={handleChange}
                 >
-                  <option value="EASY">EASY</option>
+                  <option selected value="EASY">EASY</option>
                   <option value="MEDIUM">MEDIUM</option>
                   <option value="HARD">HARD</option>
                 </select>

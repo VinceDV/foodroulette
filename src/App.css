@@ -23,8 +23,15 @@ body {
   #intro-example {
     height: 600px;
   }
-}
 
+}
+@media (max-width: 996px) {
+ 
+  #fotoRec {
+    width: 335.69px; 
+    height: 223.78px;
+  }
+}
 /* Media query for smaller screens */
 @media (max-width: 768px) {
   body {
