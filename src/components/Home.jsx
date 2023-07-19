@@ -27,7 +27,7 @@ const Home = () => {
               <h4>
                 Is it a soup? Is it a sub?<br></br> Your fridge decides!
               </h4>
-              <p className="mt-3">The only ingredients we assume you have are salt, pepper, and water.</p>
+              <p className="mt-3">The only ingredients we assume you have are <span style={{color: "rgb(219, 214, 214)"}}>salt,</span> <span style={{color: "black"}}>pepper,</span> and <span style={{color: "rgb(127, 195, 244)"}}>water</span>.</p>
               
                 <a
                   className="btn btn-outline-light btn-lg mt-5"

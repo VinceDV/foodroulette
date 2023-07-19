@@ -5,6 +5,7 @@ import CreateRecipe from './components/CreateRecipe';
 import Header from './components/Header';
 import Home from './components/Home.jsx';
 import LoginPage from './components/LoginPage';
+import ModRecipe from './components/ModRec';
 import RecipeList from './components/RecipeList.jsx';
 import RegisterPage from './components/RegisterPage';
 import SingleRecipe from './components/SingleRecipe';
@@ -23,6 +24,7 @@ function App() {
           <Route path="/register-page" element={<RegisterPage />} />
           <Route path="/home" element={<Home />} />
           <Route path="/create-recipe" element={<CreateRecipe />} />
+          <Route path="/modify-recipe/:id" element={<ModRecipe />} />
 
         </Routes>
       </BrowserRouter>

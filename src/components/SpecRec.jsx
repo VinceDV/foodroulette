@@ -68,7 +68,10 @@ function SpecRec(props) {
                 <Row className="d-flex justify-content-around">
                   <Col xs={12} lg={3}>
                     <h4 className="text-start mb-2">Ingredients</h4>
-                    <ul className="text-start ps-2" style={{color: "rgb(43, 42, 41)"}}>
+                    <ul
+                      className="text-start ps-2"
+                      style={{ color: "rgb(43, 42, 41)" }}
+                    >
                       {Object.keys(records).map((key) => {
                         if (key.includes("strIngredient") && records[key]) {
                           return <li key={key}>{records[key]}</li>;
@@ -79,26 +82,59 @@ function SpecRec(props) {
                   </Col>
                   <Col xs={12} lg={3}>
                     <h4 className="text-start mb-2">Difficulty</h4>
-                    <p className="text-start" style={{color: "rgb(43, 42, 41)"}}>{records.difficulty}</p>
+                    <p
+                      className="text-start"
+                      style={{ color: "rgb(43, 42, 41)" }}
+                    >
+                      {records.difficulty}
+                    </p>
                   </Col>
                   <Col xs={12} lg={3}>
                     <h4 className="text-start mb-2">Cooking Time</h4>
-                    <p className="text-start" style={{color: "rgb(43, 42, 41)"}}>{records.tempoPreparazione}m</p>
+                    <p
+                      className="text-start"
+                      style={{ color: "rgb(43, 42, 41)" }}
+                    >
+                      {records.tempoPreparazione}m
+                    </p>
                   </Col>
                   <Col xs={12} className="mb-5">
                     <h4 className="text-center mb-3">Instructions</h4>
-                    <p className="text-start" style={{color: "rgb(43, 42, 41)"}}>{records.strInstructions}</p>
+                    <p
+                      className="text-start"
+                      style={{ color: "rgb(43, 42, 41)" }}
+                    >
+                      {records.strInstructions}
+                    </p>
                   </Col>
-                  <Col xs={12} className="d-flex justify-content-center align-items-center flex-column">
-                    <Link className="btn btn-warning mb-5 py-3" target="_blank" to={records.strYoutube}>Watch Recipe</Link>
-                    <a
-                  className="btn btn-outline-light btn-lg"
-                  href="/recipe-list"
-                  role="button"
-                >
-                  Try again!
-                </a>
+                  <Col
+                    xs={12}
+                    className="d-flex justify-content-evenly align-items-center"
+                  >
+                    <Link
+                      className="btn btn-warning mb-5 py-3 me-4"
+                      target="_blank"
+                      to={records.strYoutube}
+                    >
+                      Watch Recipe
+                    </Link>
+
+                    <Link
+                      className="btn btn-danger mb-5 py-3"
+                      to={"/modify-recipe/" + id}
+                    >
+                      Modify Recipe
+                    </Link>
                   </Col>
+                  <Col xs={12} className="mt-5">
+                  <a
+                      className="btn btn-outline-light btn-lg"
+                      href="/recipe-list"
+                      role="button"
+                    >
+                      Try again!
+                    </a>
+                    </Col>
                 </Row>
               </div>
             </>

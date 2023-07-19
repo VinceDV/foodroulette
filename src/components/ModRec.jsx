@@ -1,9 +1,14 @@
-import React, { useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
-
-function CreateRecipe() {
+import React, { useEffect, useState } from "react";
+import { Button, Col, Container, Modal, Row } from "react-bootstrap";
+import { useNavigate, useParams } from "react-router-dom";
+function ModRecipe() {
+  const navigate = useNavigate();
   const [validated, setValidated] = useState(false);
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const [formData, setFormData] = useState({
     strMeal: "",
     strMealThumb: "",
@@ -22,17 +27,35 @@ function CreateRecipe() {
     tempoPreparazione: "",
     strInstructions: "",
   });
-  const navigate = useNavigate();
+
+  const params = useParams();
+  const id = params.id;
+
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  var requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow",
+  };
+
+  useEffect(() => {
+    fetch("http://localhost:8080/app/ricetta/" + id, requestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        setFormData(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  console.log(formData);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     event.stopPropagation();
 
-    // const form = event.currentTarget;
-    // if (form.checkValidity() === false) {
-    //   setValidated(true);
-    //   return;
-    // }
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append(
@@ -40,23 +63,28 @@ function CreateRecipe() {
       "Bearer " + localStorage.getItem("token")
     );
 
+    var requestOptions = {
+      method: "PUT",
+      headers: myHeaders,
+      body: JSON.stringify(formData),
+    };
+
     try {
-      const response = await fetch("http://localhost:8080/app/ricetta", {
-        method: "POST",
-        headers: myHeaders,
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "http://localhost:8080/app/ricetta/" + id,
+        requestOptions
+      );
 
       if (response.ok) {
-        console.log("Recipe created.");
-        alert("Recipe created!");
+        console.log("Recipe modified.");
+        alert("Recipe modified!");
         navigate("/recipe-list");
       } else {
-        console.log("Error during recipe creation " + formData);
-        alert("Error during creation!");
+        console.log("Error during recipe modification " + formData);
+        alert("Error during modification!");
       }
     } catch (error) {
-      console.log("Error occurred during creation request");
+      console.log("Error occurred during edit request");
       alert(error);
     }
   };
@@ -68,9 +96,44 @@ function CreateRecipe() {
     });
   };
 
+  const handleDelete = async (event) => {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append(
+      "Authorization",
+      "Bearer " + localStorage.getItem("token")
+    );
+
+    var requestOptions = {
+      method: "DELETE",
+      headers: myHeaders,
+      body: JSON.stringify(formData),
+    };
+
+    try {
+      const response = await fetch(
+        "http://localhost:8080/app/ricetta/" + id,
+        requestOptions
+      );
+
+      if (response.ok) {
+        console.log("Recipe deleted.");
+        alert("Recipe deleted!");
+        navigate("/recipe-list");
+      } else {
+        console.log("Error during recipe deletion " + formData);
+        alert("Error during deletion!");
+      }
+    } catch (error) {
+      console.log("Error occurred during delete request");
+      alert(error);
+    }
+  };
+
   return (
     <Container className="my-4">
-      {!localStorage.getItem("token") ? (
+      {localStorage.getItem("username") !== "VinceDV" &&
+      localStorage.getItem("username") !== "MariG" ? (
         <>
           <Row className="d-flex justify-content-center">
             <Col
@@ -78,15 +141,13 @@ function CreateRecipe() {
               xs={8}
             >
               <h2 className="my-4">
-                Register or Login <br /> to create your own recipe!
+                Unauthorized! <br />
+                Recipes can be edited only by admins!
               </h2>
               <div className="d-flex justify-content-between mt-3">
-                <a href="/register-page">
-                  <button className="linkNav me-4">Register</button>
-                </a>
-                <a href="/login-page">
-                  <button className="linkNav">Login</button>
-                </a>
+                <button onClick={() => navigate(-1)} className="linkNav">
+                  Go back
+                </button>
               </div>
             </Col>
           </Row>
@@ -98,13 +159,9 @@ function CreateRecipe() {
               className="formReg"
               onSubmit={handleSubmit}
               noValidate
-              validated={validated.toString()} // Convert boolean to string
+              validated={validated.toString()}
             >
-              <p className="title text-center fs-3">Create your recipe</p>
-              <p className="message">
-                You can provide up to 9 ingredients per recipe; video and
-                pictures are not mandatory.
-              </p>
+              <p className="title text-center fs-3">Edit recipe</p>
               <label className="mb-2">
                 <span>Name</span>
                 <input
@@ -265,15 +322,16 @@ function CreateRecipe() {
               <label className="d-flex flex-column">
                 <span className="me-3">Difficulty</span>
                 <select
-                  className="text-center mb-3"
-                  name="difficulty"
-                  value={formData.difficulty}
-                  onChange={handleChange}
-                >
-                  <option value="EASY">EASY</option>
-                  <option value="MEDIUM">MEDIUM</option>
-                  <option value="HARD">HARD</option>
-                </select>
+  className="text-center mb-3"
+  name="difficulty"
+  value={formData.difficulty}
+  onChange={handleChange}
+>
+  <option value="EASY">EASY</option>
+  <option value="MEDIUM">MEDIUM</option>
+  <option value="HARD">HARD</option>
+</select>
+
               </label>
               <label>
                 <span>Preparation time (in minutes)</span>
@@ -297,13 +355,48 @@ function CreateRecipe() {
                   onChange={handleChange}
                 ></textarea>
               </label>
-              <button className="submit my-4 text-dark bottone">Submit</button>
+              <button className="submit my-4 text-dark bottone">Edit</button>
+              <Button
+                className="delete text-light bg-danger"
+                onClick={handleShow}
+              >
+                Delete
+              </Button>
             </form>
           </div>
         </>
       )}
+      {/* MODAL */}
+      <Modal show={show} onHide={handleClose} bgVariant="dark">
+        <Modal.Header closeButton>
+          <Modal.Title>
+            Are you sure you want to delete this recipe?
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          By clicking <span className="text-danger">Delete</span> you will
+          permanently delete <br />'{formData.strMeal}'. <br />
+          Are you sure?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button
+            variant="danger"
+            onClick={() => {
+              handleClose();
+              handleDelete();
+            }}
+          >
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      );
+      {/* MODAL */}
     </Container>
   );
 }
 
-export default CreateRecipe;
+export default ModRecipe;
