@@ -28,11 +28,6 @@ function CreateRecipe() {
     event.preventDefault();
     event.stopPropagation();
 
-    // const form = event.currentTarget;
-    // if (form.checkValidity() === false) {
-    //   setValidated(true);
-    //   return;
-    // }
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append(

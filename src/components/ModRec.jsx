@@ -78,7 +78,7 @@ function ModRecipe() {
       if (response.ok) {
         console.log("Recipe modified.");
         alert("Recipe modified!");
-        navigate("/recipe-list");
+        navigate(-1);
       } else {
         console.log("Error during recipe modification " + formData);
         alert("Error during modification!");
