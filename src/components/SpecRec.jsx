@@ -137,7 +137,7 @@ function SpecRec(props) {
                     </Col>
                     <Col xs={12} className="mt-5">
                       <h3>Something wrong with this recipe?</h3>
-                      <p>Email us at <a className="text-light" href="mailto:admin@foodroulette.com">admin@foodroulette.com</a></p>
+                      <p>Let us know at <a className="text-light" href="mailto:admin@foodroulette.com">admin@foodroulette.com</a></p>
                     </Col>
 
                 </Row>
