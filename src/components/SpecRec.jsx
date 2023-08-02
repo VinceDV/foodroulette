@@ -74,7 +74,7 @@ function SpecRec(props) {
                     >
                       {Object.keys(records).map((key) => {
                         if (key.includes("strIngredient") && records[key]) {
-                          return <li key={key}>{records[key]}</li>;
+                          return <li className="text-light" key={key}>{records[key]}</li>;
                         }
                         return null;
                       })}
@@ -83,16 +83,16 @@ function SpecRec(props) {
                   <Col xs={12} lg={3}>
                     <h4 className="text-start mb-2">Difficulty</h4>
                     <p
-                      className="text-start"
+                      className="text-start text-light"
                       style={{ color: "rgb(43, 42, 41)" }}
                     >
                       {records.difficulty}
                     </p>
                   </Col>
                   <Col xs={12} lg={3}>
-                    <h4 className="text-start mb-2">Cooking Time</h4>
+                    <h4 className="text-light text-start mb-2">Cooking Time</h4>
                     <p
-                      className="text-start"
+                      className="text-start text-light"
                       style={{ color: "rgb(43, 42, 41)" }}
                     >
                       {records.tempoPreparazione}m
@@ -101,7 +101,7 @@ function SpecRec(props) {
                   <Col xs={12} className="mb-5">
                     <h4 className="text-center mb-3">Instructions</h4>
                     <p
-                      className="text-start"
+                      className="text-start text-light"
                       style={{ color: "rgb(43, 42, 41)" }}
                     >
                       {records.strInstructions}
