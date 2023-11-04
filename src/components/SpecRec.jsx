@@ -171,7 +171,3 @@ function SpecRec(props) {
 }
 
 export default SpecRec;
-
-// src={props.recipe.strMealThumb}
-// <p>{props.recipe.strMeal} - {props.recipe.strArea}</p>
-//         {/* <p>{props.recipe.strInstructions}</p> */}
